@@ -154,6 +154,22 @@ const Sidebar = () => {
               setSelected={setSelected}
             />
 
+            <Item
+              title="Invoices"
+              to="/invoices/form"
+              icon={<ReceiptOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+
+            <Item
+              title="Expenses"
+              to="/expenses"
+              icon={<ReceiptOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+
             <Typography
               variant="h6"
               color={colors.grey[300]}
@@ -211,7 +227,6 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
-            
           </Box>
         </Menu>
       </ProSidebar>
