@@ -1,0 +1,63 @@
+.main-cointainer-analytic {
+    display: flex;
+    grid-template-columns: repeat(4, 1fr);
+    justify-content: space-between;
+    margin: 0 60px;
+  }
+  
+  .analytic {
+    justify-content: space-between;
+    padding: 1rem 2rem 1rem 2rem;
+    border-radius: 1rem;
+    color: black;
+    background-color: white;
+    justify-content: space-evenly;
+    align-items: center;
+    transition: 0.5s ease-in-out;
+    width: 260px;
+    height: 260px;
+  }
+  .design {
+    display: flex;
+    align-items: center;
+  }
+  .logo {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .action{
+    margin-left: 200px;
+  }
+  
+  svg {
+    font-size: 2rem;
+  }
+  .action {
+    margin-left: 80px;
+  }
+  
+  .money {
+    margin-top: 20px;
+  }
+  
+  
+  /* @media (max-width: 768px) {
+    .main-cointainer-analytic {
+      background-color: white;
+    display: flex;
+    flex-direction: column;
+  
+    
+    }
+    .analytic{
+      padding-top: 10px;
+      width: 20%;
+      height: 20%;
+      background-color: white;
+    
+  
+    }
+  } */
