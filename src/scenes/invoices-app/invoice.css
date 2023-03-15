@@ -1,83 +1,86 @@
 .main-payments {
-    padding-left: 140px;
-    padding-top: 100px;
-    
-    /* background-color: rgb(230, 166, 230); */
-  
-  
-  }
-  
+  padding-left: 140px;
+  padding-top: 100px;
+  font-family: "Source Sans Pro", sans-serif;
+  color: rgb(148, 226, 205);
+ 
+}
+
+/* background-color: rgb(230, 166, 230); */
+
+
+.all-invoice-payments {
+  width: 80%;
+  /* background-color:rgb(242,240,240); */
+
+  height: 250px;
+}
+
+
+.other-income-payments {
+  margin-top: 50px;
+
+  width: 80%;
+
+  height: 250px;
+}
+
+/* PLUS BUTTOM */
+
+.plus-button {
+  margin-top: -20px;
+  margin-left: 10px;
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  position: relative;
+  border: 2px solid black;
+  /* border-radius: 50%; */
+  cursor: pointer;
+  background-color: rgb(62, 67, 150);
+}
+.plus-button::before,
+.plus-button::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60%;
+  height: 2px;
+  background-color: black;
+  transform: translate(-50%, -50%);
+}
+.plus-button::before {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+.plus-button::hover {
+  top: -10px;
+}
+/* PLUS BUTTOM */
+
+/* first section*/
+.all-invoice-flex {
+  display: flex;
+}
+.all-column {
+  display: flex;
+  flex-direction: column;
+}
+.all-column > div {
+  margin: 10px 75px;
+}
+/* @media only screen and (max-width: 600px) {
   .all-invoice-payments {
-    width: 80%;
-    background-color: white;
-    height: 250px;
+    padding: auto;
+    font-size: 5px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-direction: column;
+    width: 50px;
+    height: 50px;
   }
   .other-income-payments {
-    margin-top: 50px;
-  
-    width: 80%;
-    background-color: white;
-    height: 250px;
-  }
-  
-  /* PLUS BUTTOM */
-  
-  .plus-button {
-    margin-top: -20px;
-    margin-left: 10px;
-    display: inline-block;
-    width: 24px;
-    height: 24px;
-    position: relative;
-    border: 2px solid black;
-    /* border-radius: 50%; */
-    cursor: pointer;
-    background-color: rgb(11, 11, 106);
-  }
-  .plus-button::before,
-  .plus-button::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 60%;
-    height: 2px;
-    background-color: black;
-    transform: translate(-50%, -50%);
-  }
-  .plus-button::before {
-    transform: translate(-50%, -50%) rotate(90deg);
-  }
-  .plus-button::hover {
-    top: -10px;
-  }
-  /* PLUS BUTTOM */
-  
-  /* first section*/
-  .all-invoice-flex {
-    display: flex;
-  }
-  .all-column {
-    display: flex;
-    flex-direction: column;
-  }
-  .all-column > div {
-    margin: 10px 75px;
-  }
-  @media only screen and (max-width: 600px) {
-  .all-invoice-payments {
-    padding: auto;
-    font-size: 5px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    flex-direction: column;
-    width: 50px;
-    height: 50px;
-    
-  }
-  .other-income-payments{
-    
     padding: auto;
     font-size: 5px;
     width: 100%;
@@ -86,8 +89,4 @@
     width: 50px;
     height: 50px;
   }
-  
-  
-  
-  
-  }
+} */

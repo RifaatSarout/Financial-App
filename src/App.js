@@ -36,7 +36,7 @@ function App() {
               <Route path="/contacts" element={<Contacts />} />
               <Route path="/invoices" element={<Invoices />} />
               <Route path= "/income" element ={<Invoiceapp/>} />
-              <Route path= "/expenses" element ={<Expenses/>} />
+              {/* <Route path= "/expenses" element ={<Expenses/>} /> */}
               <Route path= "/invoice" element = {<Invoice/>} />
 
               <Route path="/form" element={<Form />} />

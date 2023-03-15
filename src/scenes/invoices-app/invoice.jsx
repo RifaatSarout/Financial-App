@@ -6,6 +6,10 @@ import { BiTransfer } from "react-icons/bi";
 import { GiTakeMyMoney } from "react-icons/gi";
 import "./invoice.css"
 
+
+
+// Detect the current mode (light or dark) and add the appropriate class to the body
+
 function invoice() {
   return(
     <div className="main-page-payments">
