@@ -80,7 +80,7 @@ const Sidebar = () => {
                 ml="15px"
               >
                 <Typography variant="h3" color={colors.grey[100]}>
-                  ADMINIS
+                  MyFinance App
                 </Typography>
                 <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
                   <MenuOutlinedIcon />
@@ -93,10 +93,10 @@ const Sidebar = () => {
             <Box mb="25px">
               <Box display="flex" justifyContent="center" alignItems="center">
                 <img
-                  alt="profile-user"
+                  alt=""
                   width="100px"
                   height="100px"
-                  src={`../../assets/user.png`}
+                  src={``}
                   style={{ cursor: "pointer", borderRadius: "50%" }}
                 />
               </Box>
@@ -107,10 +107,10 @@ const Sidebar = () => {
                   fontWeight="bold"
                   sx={{ m: "10px 0 0 0" }}
                 >
-                  Ed Roh
+                  Sarah Hachouch
                 </Typography>
                 <Typography variant="h5" color={colors.greenAccent[500]}>
-                  VP Fancy Admin
+                  MyFinance App Admin
                 </Typography>
               </Box>
             </Box>
@@ -133,7 +133,7 @@ const Sidebar = () => {
               Data
             </Typography>
             <Item
-              title="Manage Team"
+              title="Manage Admins"
               to="/team"
               icon={<PeopleOutlinedIcon />}
               selected={selected}
@@ -211,13 +211,7 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
-            <Item
-              title="Geography Chart"
-              to="/geography"
-              icon={<MapOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
+            
           </Box>
         </Menu>
       </ProSidebar>
