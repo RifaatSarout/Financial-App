@@ -1,0 +1,8 @@
+.form{display: flex;
+}
+
+.form2{
+    flex-grow: 2;
+    margin-top:5rem;
+    margin-left: 2rem;
+}

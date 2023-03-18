@@ -1,0 +1,7 @@
+.team{display: flex;
+}
+
+.team2{
+    flex-grow: 2;
+
+}
