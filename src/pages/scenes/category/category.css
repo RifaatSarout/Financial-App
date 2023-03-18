@@ -1,0 +1,7 @@
+.categories{display: flex;
+}
+
+.categories2{
+    flex-grow: 2;
+
+}

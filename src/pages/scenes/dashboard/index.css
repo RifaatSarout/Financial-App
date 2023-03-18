@@ -1,0 +1,21 @@
+.cici{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.flex2{
+    flex-grow: 4;
+    width: 50%;
+}
+
+.pepse{
+    display: flex;
+    flex-direction:row;
+    flex-grow: 1;
+    
+}
+.flex1{
+    margin-top: 1.25%;
+
+}
