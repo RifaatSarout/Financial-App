@@ -1,7 +1,6 @@
 import { Box } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { tokens } from "../../../theme";
-import { mockDataContacts } from "../../../data/mockData";
 import Header from "../../../components/Header";
 import { useTheme } from "@mui/material";
 import Topbar from "../global/Topbar";
@@ -9,15 +8,31 @@ import Sidebar from "../global/Sidebar";
 import EditIcon from '@material-ui/icons/Edit';
 import { useCategoriesContext } from "../../../hooks/useCategoryContext"
 import { useAuthContext } from "../../../hooks/useAuthContext"
-import {useState} from 'react'
+import {useState,useEffect} from 'react'
 import "./category.css"
 const Category = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [isSidebar, setIsSidebar] = useState(true);
   const {user} = useAuthContext();
+  const {categories, dispatch} = useCategoriesContext();
+  useEffect(() => {
+    const fetchCategories = async () => {
+      const response = await fetch('http://localhost:8000/api/categories', {
+        headers: {'Authorization': `Bearer ${user.token}`},
+      });
+      const json = await response.json();
+      if (response.ok) {
+        dispatch({type: 'SET_CATEGORIES', payload: json});
+      }
+    };
+  
+    if (user) {
+        fetchCategories();
+    }
+  }, [dispatch, user]);
+
   const handleClick = async (row) => {
-   
 
   }
   const columns = [
@@ -117,7 +132,7 @@ const Category = () => {
         }}
       >
         <DataGrid
-          rows={mockDataContacts}
+          rows={categories}
           columns={columns}
           components={{ Toolbar: GridToolbar }}
         />

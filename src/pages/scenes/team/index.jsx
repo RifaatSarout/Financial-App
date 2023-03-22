@@ -25,6 +25,7 @@ const Team = () => {
       const json = await response.json();
       if (response.ok) {
         dispatch({type: 'SET_ADMINS', payload: json});
+        
       }
     };
   
@@ -42,8 +43,6 @@ const Team = () => {
         'Authorization': `Bearer ${user.token}`
       }
     })
-    console.log(response)
-
   }
 
   const columns = [

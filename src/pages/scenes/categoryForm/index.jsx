@@ -2,94 +2,68 @@ import { Formik } from "formik";
 import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../../../components/Header";
-import { tokens } from "../../../theme";
 import Topbar from "../global/Topbar";
 import Sidebar from "../global/Sidebar";
-import { useState , useRef} from "react";
-import { Box, Button,  Typography, useTheme, TextField, MenuItem  } from "@mui/material";
-import { useAdminsContext } from "../../../hooks/useAdminsContext"
+import { useState} from "react";
+import { Box, Button,TextField, MenuItem  } from "@mui/material";
+import { useCategoriesContext } from "../../../hooks/useCategoryContext"
 import { useAuthContext } from "../../../hooks/useAuthContext"
-import axios from "axios"
+import InputLabel from '@mui/material/InputLabel'
+import * as React from 'react';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 import "./categoryf.css"
-import { CssBaseline, ThemeProvider } from "@mui/material";
-import { ColorModeContext, useMode } from "../../../theme"
-import Autocomplete from '@mui/material/Autocomplete';
 
 const CategoryForm = () => {
 
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const { user } = useAuthContext()
-  const { dispatch } = useAdminsContext()
+  const { dispatch } = useCategoriesContext()
   const [error, setError] = useState(null)
   const[added,setAdded]=useState(null)
   const [isSidebar, setIsSidebar] = useState(true);
-  const types = [
-    {
-      value: 'incomes',
-      label: 'incomes',
-    },
-    {
-      value: 'expenses',
-      label: 'expenses',
-    },
-  ];
-  
-  const types1 = [
-    {
-      value: 'recurring',
-      label: 'recurring',
-    },
-    {
-      value: 'fixed',
-      label: 'fixed',
-    },
-  ];
+  const [emptyFields, setEmptyFields] = useState([])
 
   const handleFormSubmit =async (values) => {
 
-    const formData = new FormData();
-    formData.append('name', values.name);
-    formData.append('email', values.email);
-    formData.append('password', values.password);
-    formData.append('password_confirmation', values.password_confirmation);
-
-    console.log("formdata",formData)
-     try{ 
-      const response = await axios({
-       url:'http://localhost:8000/api/register', 
-       method: 'POST',
-       headers: {
-         'Content-Type': 'multipart/form-data',
-         'Authorization': `Bearer ${user.token}`
-      },
-      data: formData
-     })
-  
- 
-    const json = await response.data
-     if (response.status===201) {
-       setAdded("uploaded successfully")
-      dispatch({type: 'CREATE_ADMIN', payload: json.message.user})
-       
-     }
-     else{
-       setError(json.error)
-     }
-   }
-   catch{
-      
-         setError("error")
-         setAdded(null)
-   }
+    if (!user) {
+      setError('You must be logged in')
+      return
+    }
+    const created_by = user.user.id;
+    const category = {name:values.name,type:values.type,created_by}
+    const body =JSON.stringify(category)
+     const response = await fetch('http://localhost:8000/api/categories', {
+      method: 'POST',
+      body: body,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${user.token}`
+      }
+    })
+    const json = await response.json()
+    if (!response.ok) {
+      setError(json.error)
+      setEmptyFields(json.emptyFields)
+    }
+    if (response.ok) {
+      values.name=""
+      values.type=""
+      setError(null)
+      setEmptyFields([])
+      dispatch({type: 'CREATE_CATEGORY', payload: json})
+    }
+    
+    
   };
 
   return (
-   <div className="form">
-      <div className="form1">
+   <div className="formCategory">
+      <div className="formCategory1">
        <Sidebar isSidebar={isSidebar}/>
        <Topbar setIsSidebar={setIsSidebar} />
     </div>
-    <div className="form2">
+    <div className="formCategory2">
     <Box m="20px">
       <div className="mosh">
         <Header title="Add Category" subtitle="" />
@@ -111,8 +85,8 @@ const CategoryForm = () => {
           <form onSubmit={handleSubmit}>
             <Box
               display="grid"
-              gap="30px"
-              gridTemplateColumns="repeat(1, minmax(0, 1fr))"
+              gap="1rem"
+              gridTemplateColumns="repeat(1, minmax(0, 2fr))"
               sx={{
                 "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
               }}
@@ -130,104 +104,25 @@ const CategoryForm = () => {
                 helperText={touched.name && errors.name}
                 
             />
-          <TextField
-             id="filled-select-type"
-             select
-             label="Select"
-             defaultValue=""
-             onBlur={handleBlur}
-             onChange={handleChange}
-             helperText="type"
-             variant="filled"
-             error={!!touched.name && !!errors.name}
-          >
-          {types.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </TextField>
-       </Box>
-        <Box ml="32.5rem" mt="20px">
-              <Button type="submit" color="secondary" variant="contained">
-                Create New Category
-              </Button>
-            </Box>
-          </form>
-        )}
-      </Formik>
-    </Box>
-    </div>
-    <div className="form3">
-    <Box m="20px">
-      <div className="mosh">
-        <Header title="Add Category" subtitle="" />
-      </div>
-     <Formik
-        onSubmit={handleFormSubmit}
-        initialValues={initialValues}
-        validationSchema={checkoutSchema}
-      >
-        {({
-          values,
-          errors,
-          touched,
-          handleBlur,
-          handleChange,
-          handleSubmit,
-        }) => (
-          
-          <form onSubmit={handleSubmit}>
-            <Box
-              display="grid"
-              gap="30px"
-              gridTemplateColumns="repeat(1, minmax(0, 1fr))"
-              sx={{
-                "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
-              }}
-            >
-           <TextField
-                fullWidth
-                variant="filled"
-                type="text"
-                label="Title"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.title}
-                name="title"
-                error={!!touched.title&& !!errors.title}
-                helperText={touched.title && errors.title}
-                
-            />
-             <TextField
-                fullWidth
-                variant="filled"
-                type="text"
-                label="Description"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.description}
-                name="description"
-                error={!!touched.description&& !!errors.description}
-                helperText={touched.description && errors.description}
-                
-            />
-          <TextField
-             id="filled-select-type"
-             select
-             label="Select"
-             defaultValue=""
-             onBlur={handleBlur}
-             onChange={handleChange}
-             helperText="type"
-             variant="filled"
-          >
-          {types1.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </TextField>
+       <FormControl>
+        <InputLabel id="type">Type</InputLabel>
+        <Select
+          fullWidth
+          variant="filled"
+          labelId="type"
+          id="type"
+          value={values.type}
+          label="Type"
+          onChange={handleChange}
+          name="type"
+          onBlur={handleBlur}
+        >
+          <MenuItem value={'expenses'}>Expenses</MenuItem>
+          <MenuItem value={'incomes'}>Incomes</MenuItem>
+        </Select>
+      </FormControl>
+
+         
        </Box>
         <Box ml="32.5rem" mt="20px">
               <Button type="submit" color="secondary" variant="contained">
@@ -240,6 +135,7 @@ const CategoryForm = () => {
     </Box>
     </div>
     </div>
+  
   );
 };
 
@@ -247,15 +143,10 @@ const CategoryForm = () => {
 const checkoutSchema = yup.object().shape({
   name: yup.string().required("required"),
 
-  email: yup.string().email("invalid email").required("required"),
-  password: yup.string().required("required"),
-  password_confirmation: yup.string().required("required"),
 });
 const initialValues = {
   name: "",
-  email: "",
-  password: "",
-  password_confirmation: "",
+  type:""
 };
 
 export default CategoryForm;

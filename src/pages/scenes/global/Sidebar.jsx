@@ -6,7 +6,7 @@ import "react-pro-sidebar/dist/css/styles.css";
 import { tokens } from "../../../theme";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
-import ContactsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
+import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
 import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
@@ -17,7 +17,6 @@ import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import ListIcon from '@material-ui/icons/List';
 import ViewColumnIcon from '@material-ui/icons/ViewColumn';
-import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import { useAuthContext } from "../../../hooks/useAuthContext";
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
@@ -44,6 +43,7 @@ const Sidebar = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState("Dashboard");
   const { user } = useAuthContext();
+  console.log("why am null",user)
   return (
     <Box
       sx={{
@@ -150,8 +150,8 @@ const Sidebar = () => {
               setSelected={setSelected}
             />
             <Item
-              title="Invoices Balances"
-              to="/invoices"
+              title="Transactions"
+              to="/transactions"
               icon={<ReceiptOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
@@ -186,9 +186,9 @@ const Sidebar = () => {
               setSelected={setSelected}
             />
             <Item
-              title="FAQ Page"
-              to="/faq"
-              icon={<HelpOutlineOutlinedIcon />}
+              title="Transactions Form"
+              to="/transactions_form"
+              icon={<ReceiptLongIcon />}
               selected={selected}
               setSelected={setSelected}
             />

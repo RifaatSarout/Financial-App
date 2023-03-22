@@ -9,7 +9,7 @@ import TrafficIcon from "@mui/icons-material/Traffic";
 import Header from "../../../components/Header";
 import LineChart from "../../../components/LineChart";
 import GeographyChart from "../../../components/GeographyChart";
-import BarChart from "../../../components/BarChart";
+//import BarChart from "../../../components/BarChart";
 import StatBox from "../../../components/StatBox";
 import ProgressCircle from "../../../components/ProgressCircle";
 import { useState } from "react";
@@ -254,7 +254,7 @@ const Dashboard = () => {
             <Typography>Includes extra misc expenditures and costs</Typography>
           </Box>
         </Box>
-        <Box
+      {/*  <Box
           gridColumn="span 4"
           gridRow="span 2"
           backgroundColor={colors.primary[400]}
@@ -264,12 +264,13 @@ const Dashboard = () => {
             fontWeight="600"
             sx={{ padding: "30px 30px 0 30px" }}
           >
-            Sales Quantity
+             
+             CATEGORIES PROFIT
           </Typography>
           <Box height="250px" mt="-20px">
             <BarChart isDashboard={true} />
           </Box>
-        </Box>
+          </Box>*/}
         <Box
           gridColumn="span 4"
           gridRow="span 2"

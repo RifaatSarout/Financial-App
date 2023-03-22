@@ -7,16 +7,13 @@ import { tokens } from "../../../theme";
 import Topbar from "../global/Topbar";
 import Sidebar from "../global/Sidebar";
 import { useState , useRef} from "react";
-import { Box, Button,  Typography, useTheme, TextField  } from "@mui/material";
+import { Box, Button, TextField  } from "@mui/material";
 import { useAdminsContext } from "../../../hooks/useAdminsContext"
 import { useAuthContext } from "../../../hooks/useAuthContext"
 import axios from "axios"
 import "./form.css"
-
 const Form = () => {
-  const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
-  const isNonMobile = useMediaQuery("(min-width:600px)");
+   const isNonMobile = useMediaQuery("(min-width:600px)");
   const { user } = useAuthContext()
   const { dispatch } = useAdminsContext()
   const [error, setError] = useState(null)
@@ -33,7 +30,6 @@ const Form = () => {
     // Here you can handle the selected file as needed.
     setImage(file);
   };
-
   const handleFormSubmit =async (values) => {
    
     const formData = new FormData();
@@ -42,7 +38,6 @@ const Form = () => {
     formData.append('password', values.password);
     formData.append('password_confirmation', values.password_confirmation);
     formData.append('image',image);
-    console.log("formdata",formData)
      try{ 
       const response = await axios({
        url:'http://localhost:8000/api/register', 

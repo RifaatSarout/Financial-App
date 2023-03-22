@@ -1,0 +1,9 @@
+.update2{
+    display:flex;
+    justify-content: end;
+    align-items: space-around;
+    margin-left: 30rem;
+}
+.update{
+    display: flex;
+}
